@@ -29,7 +29,7 @@ class FormField extends React.PureComponent {
         {!hideLabel && (
           <CommonField
             component={component}
-            inlineLabel="true"
+            inlineLabel={false}
             shrinkLabel={!isBlank}
             marginBottom={false}
           />

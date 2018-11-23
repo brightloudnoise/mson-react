@@ -80,7 +80,7 @@ class ListField extends React.PureComponent {
         {!hideLabel && (
           <CommonField
             component={component}
-            inlineLabel="true"
+            inlineLabel={true}
             marginBottom={false}
             shrinkLabel={!isBlank}
           />

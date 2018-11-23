@@ -1,45 +1,29 @@
 import React from 'react';
 import { Select } from 'antd';
-import MenuItem from '@material-ui/core/MenuItem';
-//import Select from '@material-ui/core/Select';
-import Checkbox from '@material-ui/core/Checkbox';
-import ListItemText from '@material-ui/core/ListItemText';
-import Input from '@material-ui/core/Input';
-import Chip from '@material-ui/core/Chip';
+
 import CommonField from './common-field';
 import attach from '../attach';
-import withStyles from '@material-ui/core/styles/withStyles';
 import DisplayValueTypography from './display-value-typography';
-import AutoCompleteSelect from './autocomplete-select';
+//import MaskedInput from 'react-text-mask';
 
 const Option = Select.Option;
 
-const styles = theme => ({
-  formControl: {
-    // Specify a more appropriate min width so that the field is wide enough to cover most labels
-    minWidth: 120
-  },
-  chip: {
-    margin: theme.spacing.unit / 4
-  }
-});
-
 class SelectField extends React.PureComponent {
-  state = {
-    focus: false
-  };
+  constructor(props) {
+    super(props);
+
+    // Create a custom TextMask component. This is done once in the constructor so that it is not
+    // done in each call to render()
+    /* this.TextMaskCustom = props => {
+      const { inputRef, ...other } = props;
+      const { mask } = this.props;
+
+      return <MaskedInput {...other} ref={inputRef} mask={mask} />;
+    }; */
+  }
 
   handleChange(value) {
     this.props.component.setValue(value);
-  }
-
-  handleAutocompleteChange(value) {
-    const { multiple } = this.props;
-    if (multiple) {
-      this.handleChange(value.map(val => val.value));
-    } else {
-      this.handleChange(value && (value.value ? value.value : null));
-    }
   }
 
   handleFocus() {
@@ -73,10 +57,6 @@ class SelectField extends React.PureComponent {
             <Option key={option.value} value={option.value}>
               {option.value}
             </Option>
-            /* <MenuItem value={option.value} key={option.value}>
-              <Checkbox checked={checked} />
-              <ListItemText primary={option.label} />
-            </MenuItem> */
           );
         } else {
           opts.push(
@@ -108,122 +88,50 @@ class SelectField extends React.PureComponent {
       autocomplete
     } = this.props;
 
-    const { focus } = this.state;
-
     const dis = accessEditable === false || disabled;
-
-    let fieldValue = multiple ? [] : '';
-    if (value) {
-      fieldValue = value;
-    }
-
-    let input = undefined;
-    let renderValue = undefined;
-    if (multiple) {
-      input = <Input />;
-
-      renderValue = selected => (
-        <div className={classes.chips}>
-          {selected.map(value => (
-            <Chip
-              key={value}
-              label={component.getOptionLabel(value)}
-              className={classes.chip}
-            />
-          ))}
-        </div>
-      );
-    }
-
-    const optionalProps = {};
 
     let fld = null;
     if (editable && !useDisplayValue) {
-      if (autocomplete) {
-        let autocompleteValue = null;
+      const optional = {};
+      /* if (mask) {
+        optional.inputComponent = this.TextMaskCustom;
+      } */
+      //const uiValue = component.getUIValue();
 
-        if (multiple) {
-          autocompleteValue = fieldValue.map(value => ({
-            value: value,
-            label: component.getOptionLabel(value)
-          }));
-        } else {
-          autocompleteValue = {
-            value: fieldValue,
-            label: component.getOptionLabel(fieldValue)
-          };
-        }
-
-        // Shrink the label?
-        if (focus || !component.isValueBlank(fieldValue)) {
-          optionalProps.shrinkLabel = true;
-        }
-
-        fld = (
-          <AutoCompleteSelect
-            showSearch
-            optionFilterProp="children"
-            filterOption={(input, option) =>
-              option.props.children
-                .toLowerCase()
-                .indexOf(input.toLowerCase()) >= 0
-            }
-            //options={options}
-            isClearable={true}
-            placeholder=""
-            onChange={value => this.handleAutocompleteChange(value)}
-            onBlur={() => this.handleBlur()}
-            onFocus={() => this.handleFocus()}
-            value={autocompleteValue}
-            isDisabled={dis}
-            fullWidth={fullWidth}
-            isMulti={multiple}
-          />
-        );
-      } else {
-        fld = (
-          <Select
-            mode={multiple ? 'multiple' : null}
-            multiple={multiple}
-            error={touched && err ? true : false}
-            onChange={this.handleChange(value)}
-            onBlur={() => this.handleBlur()}
-            input={input}
-            renderValue={renderValue}
-            value={fieldValue}
-            disabled={dis}
-            fullWidth={fullWidth}
-            className={classes.formControl}
-          >
-            {this.renderOptions()}
-          </Select>
-        );
-      }
-    } else {
-      let displayValue = null;
-      if (multiple && value) {
-        displayValue = value.map(val => (
-          <Chip
-            key={val}
-            label={component.getOptionLabel(val)}
-            className={classes.chip}
-          />
-        ));
-      } else {
-        displayValue = component.getDisplayValue();
-      }
-      fld = <DisplayValueTypography>{displayValue}</DisplayValueTypography>;
+      fld = (
+        <Select
+          mode={multiple ? 'multiple' : null}
+          showSearch
+          optionFilterProp="children"
+          filterOption={(input, option) =>
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >=
+            0
+          }
+          options={options}
+          isClearable={true}
+          placeholder=""
+          onChange={value => this.handleChange(value)}
+          onBlur={() => this.handleBlur()}
+          onFocus={() => this.handleFocus()}
+          value={value}
+          isDisabled={dis}
+          fullWidth={fullWidth}
+          isMulti={multiple}
+        >
+          {this.renderOptions()}
+        </Select>
+      );
+    } /* else {
+      fld = (
+        <DisplayValueTypography>
+          {displayValue ? displayValue : component.getDisplayValue()}
+        </DisplayValueTypography>
+      );
     }
-
-    return (
-      <CommonField component={component} {...optionalProps}>
-        {fld}
-      </CommonField>
-    );
+ */
+    return <CommonField component={component}>{fld}</CommonField>;
   }
 }
-
-SelectField = withStyles(styles)(SelectField);
 
 export default attach([
   'value',
