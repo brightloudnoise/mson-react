@@ -279,9 +279,9 @@ export default {
       required: true
     },
 
-    {
+    /* {
       component: 'ReCAPTCHAField'
-    },
+    }, */
 
     {
       name: 'selectField',

@@ -1,5 +1,5 @@
 import React from 'react';
-import FormControlMU from '@material-ui/core/FormControl';
+//import FormControlMU from '@material-ui/core/FormControl';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 const styles = theme => ({
@@ -23,16 +23,7 @@ class FormControl extends React.PureComponent {
     const noMarginBottomClassName =
       marginBottom === false ? classes.noMarginBottom : '';
 
-    return (
-      <FormControlMU
-        fullWidth={fullWidth}
-        className={`${
-          classes.formControl
-        } ${fullWidthClassName} ${noMarginBottomClassName}`}
-      >
-        {children}
-      </FormControlMU>
-    );
+    return <React.Fragment>{children}</React.Fragment>;
   }
 }
 

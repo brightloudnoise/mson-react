@@ -115,7 +115,7 @@ class SelectField extends React.PureComponent {
           onFocus={() => this.handleFocus()}
           value={value}
           isDisabled={dis}
-          fullWidth={fullWidth}
+          //fullWidth={fullWidth}
           isMulti={multiple}
         >
           {this.renderOptions()}

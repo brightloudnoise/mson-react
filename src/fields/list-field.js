@@ -68,7 +68,7 @@ class ListField extends React.PureComponent {
           key="button"
           aria-label="add"
           onClick={this.handleNew}
-          icon="Add"
+          icon="plus"
           label={'Add ' + (singularLabel ? singularLabel : '')}
           marginTop={false}
         />
@@ -80,7 +80,7 @@ class ListField extends React.PureComponent {
         {!hideLabel && (
           <CommonField
             component={component}
-            inlineLabel={true}
+            inlineLabel={false}
             marginBottom={false}
             shrinkLabel={!isBlank}
           />

@@ -480,7 +480,7 @@ class CollectionField extends React.PureComponent {
         {!hideLabel && (
           <CommonField
             component={component}
-            inlineLabel={true}
+            inlineLabel={false}
             shrinkLabel={!isBlank}
           />
         )}
