@@ -1,5 +1,6 @@
 import React from 'react';
-import Input from '@material-ui/core/Input';
+import { Input } from 'antd';
+//import Input from '@material-ui/core/Input';
 import CommonField from './common-field';
 import attach from '../attach';
 import DisplayValueTypography from './display-value-typography';

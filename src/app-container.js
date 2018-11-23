@@ -1,5 +1,6 @@
 import React from 'react';
 import AppUI from './app';
+import '../node_modules/antd/dist/antd.min.css';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
@@ -39,6 +40,7 @@ class AppContainer extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
+
         <BrowserRouter
           getUserConfirmation={this.onNavigate}
           basename={basename}

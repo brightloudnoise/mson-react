@@ -1,6 +1,7 @@
 import React from 'react';
+import { Select } from 'antd';
 import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+//import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import ListItemText from '@material-ui/core/ListItemText';
 import Input from '@material-ui/core/Input';
@@ -10,6 +11,8 @@ import attach from '../attach';
 import withStyles from '@material-ui/core/styles/withStyles';
 import DisplayValueTypography from './display-value-typography';
 import AutoCompleteSelect from './autocomplete-select';
+
+const Option = Select.Option;
 
 const styles = theme => ({
   formControl: {
@@ -57,26 +60,29 @@ class SelectField extends React.PureComponent {
       if (!multiple && blankString) {
         // Note: the blankString doesn't make sense when we allow multiple selections
         opts.push(
-          <MenuItem value="" key="">
-            <em>{blankString}</em>
-          </MenuItem>
+          <Option value="" key="">
+            {blankString}
+          </Option>
         );
       }
 
       options.forEach(option => {
         if (multiple) {
-          const checked = value ? value.indexOf(option.value) !== -1 : false;
+          //const checked = value ? value.indexOf(option.value) !== -1 : false;
           opts.push(
-            <MenuItem value={option.value} key={option.value}>
+            <Option key={option.value} value={option.value}>
+              {option.value}
+            </Option>
+            /* <MenuItem value={option.value} key={option.value}>
               <Checkbox checked={checked} />
               <ListItemText primary={option.label} />
-            </MenuItem>
+            </MenuItem> */
           );
         } else {
           opts.push(
-            <MenuItem value={option.value} key={option.value}>
-              {option.label}
-            </MenuItem>
+            <Option key={option.value} value={option.value}>
+              {option.value}
+            </Option>
           );
         }
       });
@@ -155,7 +161,14 @@ class SelectField extends React.PureComponent {
 
         fld = (
           <AutoCompleteSelect
-            options={options}
+            showSearch
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              option.props.children
+                .toLowerCase()
+                .indexOf(input.toLowerCase()) >= 0
+            }
+            //options={options}
             isClearable={true}
             placeholder=""
             onChange={value => this.handleAutocompleteChange(value)}
@@ -170,9 +183,10 @@ class SelectField extends React.PureComponent {
       } else {
         fld = (
           <Select
+            mode={multiple ? 'multiple' : null}
             multiple={multiple}
             error={touched && err ? true : false}
-            onChange={event => this.handleChange(event.target.value)}
+            onChange={this.handleChange(value)}
             onBlur={() => this.handleBlur()}
             input={input}
             renderValue={renderValue}

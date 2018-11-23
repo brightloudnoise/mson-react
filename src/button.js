@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button as Btn } from 'antd';
 import ButtonMui from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Icon from './icon';
@@ -34,7 +35,16 @@ class Button extends React.PureComponent {
     const className = marginTop !== false ? classes.marginTop : null;
 
     return (
-      <ButtonMui
+      <>
+        <Btn
+          htmlType={type}
+          disabled={disabled}
+          icon={icon}
+          onClick={this.handleClick}
+        >
+          {label}
+        </Btn>
+        {/*  <ButtonMui
         className={className}
         type={type}
         color="primary"
@@ -45,7 +55,8 @@ class Button extends React.PureComponent {
       >
         {icon ? <Icon className={classes.leftIcon} icon={icon} /> : null}
         {label}
-      </ButtonMui>
+     </ButtonMui> */}
+      </>
     );
   }
 }

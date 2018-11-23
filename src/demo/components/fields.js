@@ -41,7 +41,7 @@ export default {
       name: 'buttonField',
       component: 'ButtonField',
       label: 'ButtonField',
-      icon: 'Save',
+      icon: 'save',
       type: 'submit',
       block: true
     },

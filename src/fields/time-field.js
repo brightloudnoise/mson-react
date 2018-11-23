@@ -1,9 +1,10 @@
 import React from 'react';
 import attach from '../attach';
 import CommonField from './common-field';
+import { TimePicker } from 'antd';
 import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
-import TimePicker from 'material-ui-pickers/TimePicker';
+//import TimePicker from 'material-ui-pickers/TimePicker';
 import withStyles from '@material-ui/core/styles/withStyles';
 import DisplayValueTypography from './display-value-typography';
 

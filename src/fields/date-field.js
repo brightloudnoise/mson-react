@@ -1,10 +1,11 @@
 import React from 'react';
 import attach from '../attach';
 import CommonField from './common-field';
+import { DatePicker } from 'antd';
 import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
 import DateTimePicker from 'material-ui-pickers/DateTimePicker';
-import DatePicker from 'material-ui-pickers/DatePicker';
+//import DatePicker from 'material-ui-pickers/DatePicker';
 import withStyles from '@material-ui/core/styles/withStyles';
 import DisplayValueTypography from './display-value-typography';
 

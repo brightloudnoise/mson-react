@@ -1,5 +1,6 @@
 import React from 'react';
-import Switch from '@material-ui/core/Switch';
+import { Checkbox } from 'antd';
+//import Switch from '@material-ui/core/Switch';
 import CommonField from './common-field';
 import attach from '../attach';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -28,7 +29,7 @@ class BooleanField extends React.PureComponent {
       fld = (
         <FormControlLabel
           control={
-            <Switch
+            <Checkbox
               checked={value ? value : false}
               onChange={this.handleChange}
               value="true"
