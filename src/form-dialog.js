@@ -106,7 +106,7 @@ class FormDialog extends React.PureComponent {
           <Button
             type="submit"
             label="Save"
-            icon="Save"
+            icon="save"
             disabled={disableSave}
           />
           <Button

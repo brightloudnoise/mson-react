@@ -1,9 +1,10 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import { Card as BVCard } from 'antd';
+//import Grid from "@material-ui/core/Grid";
+//import Paper from "@material-ui/core/Paper";
 import Component from './component';
-import Typography from '@material-ui/core/Typography';
+//import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
   paper: {
@@ -23,20 +24,9 @@ class Card extends React.PureComponent {
     const title = component.get('title');
 
     return (
-      <Grid container spacing={0} justify="center">
-        <Grid item xs={12} sm={9} md={6} lg={6}>
-          <Paper className={classes.paper}>
-            <Grid container wrap="nowrap">
-              <Grid item className={classes.content}>
-                <Typography variant="h5" component="h2">
-                  {title}
-                </Typography>
-                <Component component={content} />
-              </Grid>
-            </Grid>
-          </Paper>
-        </Grid>
-      </Grid>
+      <BVCard title={title} extra={<a href="#">More</a>}>
+        <Component component={content} />
+      </BVCard>
     );
   }
 }

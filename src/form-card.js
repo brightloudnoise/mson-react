@@ -1,7 +1,8 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import { Card as BVCard } from 'antd';
+//import Grid from "@material-ui/core/Grid";
+//import Paper from "@material-ui/core/Paper";
 import Component from './component';
 import attach from './attach';
 import FormCardButtons from './form-card-buttons';
@@ -50,28 +51,22 @@ class FormCard extends React.PureComponent {
     } = this.props;
 
     return (
-      <div>
-        <Paper className={classes.paper}>
-          <Grid container wrap="nowrap">
-            <Grid
-              item
-              className={classes.content}
-              onClick={event => this.handleClick(event)}
-            >
-              <Component component={component} formTag={false} mode="read" />
-            </Grid>
-            <FormCardButtons
-              forbidUpdate={forbidUpdate}
-              forbidDelete={forbidDelete}
-              editable={editable}
-              disabled={disabled}
-              archivedAt={value.archivedAt}
-              onEdit={event => this.handleEdit(event)}
-              onDelete={event => this.handleDelete(event)}
-            />
-          </Grid>
-        </Paper>
-      </div>
+      <BVCard
+        actions={[
+          <FormCardButtons
+            forbidUpdate={forbidUpdate}
+            forbidDelete={forbidDelete}
+            editable={editable}
+            disabled={disabled}
+            archivedAt={value.archivedAt}
+            onEdit={event => this.handleEdit(event)}
+            onDelete={event => this.handleDelete(event)}
+          />
+        ]}
+        onClick={event => this.handleClick(event)}
+      >
+        <Component component={component} formTag={false} mode="read" />
+      </BVCard>
     );
   }
 }

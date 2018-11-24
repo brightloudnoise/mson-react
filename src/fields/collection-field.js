@@ -332,7 +332,7 @@ class CollectionField extends React.PureComponent {
             <Button
               aria-label="new"
               onClick={this.handleNew}
-              icon="Add"
+              icon="plus"
               label={'New ' + singularLabel}
               marginTop={false}
             />
